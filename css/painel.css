@@ -64,7 +64,7 @@ footer p { margin: 6px 0; }
 .g-texto { font-family: Arial, Helvetica, sans-serif; fill: var(--texto); }
 .g-eixo { font-size: 11px; fill: var(--texto2); }
 .g-grade { stroke: var(--grade); stroke-width: 1; }
-.g-pandemia { fill: var(--cinza); fill-opacity: .16; }
+.g-pandemia { fill: var(--pandemia); }
 .g-pandemia-rot { font-size: 12px; fill: var(--texto2); }
 .g-ic { fill: var(--teal); fill-opacity: .10; }
 .g-linha { fill: none; stroke: var(--teal); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }

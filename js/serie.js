@@ -27,14 +27,14 @@ function folgaAlto(vs, altos, h) {
 }
 
 function moldura(p, { W, H, m, x, y, ymax, anos, pandemia }) {
+  const [p0, p1] = pandemia;
+  p.push(el("rect", { class: "g-pandemia", x: x(p0 - 0.5), y: y(ymax), width: x(p1 + 0.5) - x(p0 - 0.5), height: y(0) - y(ymax) }));
   for (const v of marcas(ymax)) {
     p.push(el("line", { class: "g-grade", x1: m.e, x2: W - m.d, y1: y(v), y2: y(v) }));
     p.push(el("text", { class: "g-texto g-eixo", x: m.e - 6, y: y(v) + 4, "text-anchor": "end" }, fn(v)));
   }
   p.push(el("text", { class: "g-texto g-eixo", transform: `translate(14 ${(m.t + H - m.b) / 2}) rotate(-90)`, "text-anchor": "middle" },
     "por 10 mil SUS-dependentes"));
-  const [p0, p1] = pandemia;
-  p.push(el("rect", { class: "g-pandemia", x: x(p0 - 0.5), y: y(ymax), width: x(p1 + 0.5) - x(p0 - 0.5), height: y(0) - y(ymax) }));
   p.push(el("text", { class: "g-texto g-pandemia-rot", x: x((p0 + p1) / 2), y: y(ymax * 0.955) + 4, "text-anchor": "middle" },
     `Pandemia (${p0}–${p1})`));
   const passo = W < 360 ? 2 : 1;
