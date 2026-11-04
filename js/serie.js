@@ -12,7 +12,7 @@ function caixaAlto(texto, cx, x0, x1, px = 11.5) {
 }
 function rotuloAlto(texto, cx, cy, x0, x1, classe, conf) {
   const { ls, c } = caixaAlto(texto, cx, x0, x1);
-  return el("text", { class: `g-texto ${classe} g-halo`, x: c, y: cy, "text-anchor": "middle", "data-conf": conf },
+  return el("text", { class: `g-texto ${classe}`, x: c, y: cy, "text-anchor": "middle", "data-conf": conf },
     ls.map((l, i) => el("tspan", { x: c, dy: i ? 13 : 0 }, l)).join(""));
 }
 
@@ -171,7 +171,7 @@ export function svgSerieMun(s, { largura, destaque, ref, pandemia, titulo, uf, r
       "data-ano": r.ano, "data-valor": fp(r.tp, 1) }, el("title", {}, `${r.ano}: ${fp(r.tp, 1)}`)));
   }
   for (const o of rots) {
-    p.push(el("text", { class: `g-texto ${o.r.ano === destaque ? "g-rotulo-dest" : "g-rotulo"} g-halo`, x: o.c, y: y(o.r.sup) - 7, "text-anchor": "middle" }, o.t));
+    p.push(el("text", { class: `g-texto ${o.r.ano === destaque ? "g-rotulo-dest" : "g-rotulo"}`, x: o.c, y: y(o.r.sup) - 7, "text-anchor": "middle" }, o.t));
   }
   const u = rots[rots.length - 1];
   rotuloUF(p, uf, x, y, u && u.r.ano === a1 ? { c: u.c, w: u.w, base: y(u.r.sup) - 7 } : null);

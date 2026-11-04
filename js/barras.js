@@ -84,8 +84,8 @@ export function svgFaixas(f, { largura, ref, titulo }) {
     p.push(el("text", { class: "g-texto g-eixo", x: m.e - 8, y: yc(i) + 4, "text-anchor": "end" }, r.faixa_etaria));
     if (tem) p.push(el("rect", { class: "g-barra", x: x(0), y: yc(i) - h / 2, width: Math.max(0, x(r.pct) - x(0)), height: h,
       "data-faixa": r.faixa_etaria, "data-valor": fp(r.pct, 1) }, el("title", {}, `${r.faixa_etaria}: ${fp(r.pct, 1)}%`)));
-    if (compacto) p.push(el("text", { class: "g-texto g-rotulo g-halo", x: x(0) + 1, y: yc(i) - h / 2 - 5 }, rot));
-    else p.push(el("text", { class: "g-texto g-rotulo g-halo", x: x(tem ? r.pct : 0) + 5, y: yc(i) + 4.5 }, rot));
+    if (compacto) p.push(el("text", { class: "g-texto g-rotulo", x: x(0) + 1, y: yc(i) - h / 2 - 5 }, rot));
+    else p.push(el("text", { class: "g-texto g-rotulo", x: x(tem ? r.pct : 0) + 5, y: yc(i) + 4.5 }, rot));
   });
   return el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img", "aria-label": titulo }, el("title", {}, titulo) + p.join(""));
 }

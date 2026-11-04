@@ -25,7 +25,7 @@ function svgPorte(rs, { largura, ymax, uf, rotuloUF, sel, regDe, titulo }) {
     const cruza = (x0, b) => dest && b - 9 < dest.ty + 5 && dest.ty - 12 < b + 3 && x0 < dest.tx + dest.w / 2 + 2 && dest.tx - dest.w / 2 - 2 < x0 + wu;
     const lugares = [[x(1), y(uf.tp) - 5], [W - m.d - 2 - wu, y(uf.tp) - 5], [x(1), y(uf.tp) + 14], [W - m.d - 2 - wu, y(uf.tp) + 14]];
     const [lx, ly] = lugares.find(([x0, b]) => !cruza(x0, b)) ?? lugares[0];
-    p.push(el("text", { class: "g-texto g-ref-rot g-halo", x: lx, y: ly }, t));
+    p.push(el("text", { class: "g-texto g-ref-rot", x: lx, y: ly }, t));
   }
   const esm = (r) => sel.regiao && regDe(r.id_municipio) !== sel.regiao;
   const largIC = Math.max(0.6, Math.min(2.2, passo * 0.55)), rp = Math.max(1.3, Math.min(2.4, passo * 0.45));
@@ -42,7 +42,7 @@ function svgPorte(rs, { largura, ymax, uf, rotuloUF, sel, regDe, titulo }) {
     const { r, cx } = dest;
     p.push(el("line", { class: "r-ic-dest", x1: cx, x2: cx, y1: y(r.inf), y2: y(r.sup) }));
     p.push(el("circle", { class: `r-pt-dest${r.instavel ? " g-instavel" : ""}`, cx, cy: y(r.tp), r: 4.6 }));
-    p.push(el("text", { class: "g-texto g-rotulo-dest g-halo", x: dest.tx, y: dest.ty, "text-anchor": "middle" }, esc(dest.rot)));
+    p.push(el("text", { class: "g-texto g-rotulo-dest", x: dest.tx, y: dest.ty, "text-anchor": "middle" }, esc(dest.rot)));
   }
   return el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img", "aria-label": titulo }, el("title", {}, titulo) + p.join(""));
 }

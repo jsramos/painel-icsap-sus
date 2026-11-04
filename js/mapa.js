@@ -1,6 +1,6 @@
 import { esc, fp, fn } from "./formato.js";
 import { enquadra, caixaDe, caminhoMunicipio, malha } from "./topo.js";
-import { el, naLargura } from "./graficos.js";
+import { el, naLargura, medeTexto } from "./graficos.js";
 
 const $ = (id) => document.getElementById(id);
 
@@ -54,8 +54,10 @@ export function criaMapa(T, P, E, { aoEscolher }) {
       alto += el("path", { class: "m-dest-reg", d: malha(T, daRegiao, m.pr) });
       alto += el("path", { class: "m-dest", d: de(k) });
       const [lon, lat] = pontos[vista.mun];
-      alto += el("text", { class: "g-texto m-rotulo g-halo", x: m.pr.x(lon), y: m.pr.y(lat) - 9 * u, "text-anchor": "middle",
-        "font-size": 12.5 * u, "stroke-width": 4 * u }, esc(E.municipios.get(vista.mun).nome));
+      const nome = E.municipios.get(vista.mun).nome, nw = medeTexto(nome, 12.5, "bold") * u;
+      const nx = m.pr.x(lon), ny = m.pr.y(lat) - 9 * u;
+      alto += el("rect", { class: "m-rotulo-fundo", x: nx - nw / 2 - 4 * u, y: ny - 12 * u, width: nw + 8 * u, height: 16 * u, rx: 3 * u });
+      alto += el("text", { class: "g-texto m-rotulo", x: nx, y: ny, "text-anchor": "middle", "font-size": 12.5 * u }, esc(nome));
     }
     m.svg.querySelector("g.m-sobre").innerHTML = baixo;
     m.svg.querySelector("g.m-topo").innerHTML = alto;

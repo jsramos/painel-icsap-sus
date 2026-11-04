@@ -43,7 +43,7 @@ export function svgPequenos(grupos, uf, { largura, ref, pandemia, titulo, mun = 
       const rot = r.ano === ref || r.ano === a1;
       q.push(el("circle", rot ? { class: "g-ponto g-ponto-p", cx: x(r.ano), cy: y(r.tp), r: 3, "data-grupo": g.grupo, "data-ano": r.ano, "data-valor": fp(r.tp, 1) }
         : { class: "g-alvo", cx: x(r.ano), cy: y(r.tp), r: 5 }, el("title", {}, `${r.ano}: ${fp(r.tp, 1)}`)));
-      if (rot) q.push(el("text", { class: "g-texto g-rotulo-p g-halo", x: x(r.ano), y: y(r.tp) - 7, "text-anchor": "middle" }, fp(r.tp, 1)));
+      if (rot) q.push(el("text", { class: "g-texto g-rotulo-p", x: x(r.ano), y: y(r.tp) - 7, "text-anchor": "middle" }, fp(r.tp, 1)));
     }
     p.push(el("g", { "data-grupo": g.grupo }, q.join("")));
   });

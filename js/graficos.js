@@ -53,8 +53,12 @@ export function marcas(max, n = 4) {
   return out;
 }
 
+const fundo = (vb) => {
+  const [x, y, w, h] = String(vb).split(/[ ,]+/);
+  return `<rect class="g-fundo" x="${x}" y="${y}" width="${w}" height="${h}" fill="#ffffff" pointer-events="none"/>`;
+};
 export const el = (nome, at = {}, filhos = "") =>
-  `<${nome}${Object.entries(at).filter(([, v]) => v != null && v !== false).map(([k, v]) => ` ${k}="${escAttr(v)}"`).join("")}>${filhos}</${nome}>`;
+  `<${nome}${Object.entries(at).filter(([, v]) => v != null && v !== false).map(([k, v]) => ` ${k}="${escAttr(v)}"`).join("")}>${nome === "svg" && at.viewBox ? fundo(at.viewBox) : ""}${filhos}</${nome}>`;
 
 export function ligaValores(fig) {
   const dica = document.createElement("div");

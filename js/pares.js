@@ -75,8 +75,10 @@ export function svgPares(g, { largura, titulo, mostraVar }) {
       p.push(el("text", { class: `g-texto ${r.destaque ? "p-nome-dest" : "p-nome"}`, x: x0 - 10, y: yc + 4.5, "text-anchor": "end" }, esc(r.nome)));
       if (mostraVar) p.push(el("text", { class: "g-texto p-nota", x: x1 + 14, y: yc + 4 }, esc(r.nota)));
     }
-    if (aoLado) p.push(el("text", { class: `g-texto ${peso} g-halo`, x: x(r.sup) + 6, y: yc + 4.5 }, fp(r.tp, 1)));
-    else p.push(el("text", { class: `g-texto ${peso} g-halo`, x: x(r.tp), y: yc - 11, "text-anchor": "middle" }, fp(r.tp, 1)));
+    const txt = fp(r.tp, 1), tw = medeTexto(txt, 12.5, r.destaque ? "bold" : "normal");
+    const tx = aoLado ? x(r.sup) + 6 : x(r.tp) - tw / 2, ty = aoLado ? yc + 4.5 : yc - 11;
+    p.push(el("rect", { class: "p-rot-fundo", x: tx - 2, y: ty - 11, width: tw + 4, height: 15 }));
+    p.push(el("text", { class: `g-texto ${peso}`, x: tx, y: ty }, txt));
   });
   const H = yB + 40;
   const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img", "aria-label": titulo }, el("title", {}, titulo) + p.join(""));
