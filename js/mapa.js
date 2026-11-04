@@ -1,6 +1,6 @@
 import { esc, fp, fn } from "./formato.js";
 import { enquadra, caixaDe, caminhoMunicipio, malha } from "./topo.js";
-import { el, naLargura, medeTexto } from "./graficos.js";
+import { amostra, el, naLargura, medeTexto } from "./graficos.js";
 
 const $ = (id) => document.getElementById(id);
 
@@ -76,9 +76,9 @@ export function criaMapa(T, P, E, { aoEscolher }) {
 
   const legenda = (mc) => {
     if (mc.unico) return "";
-    const it = (cor, rot) => `<span class="m-leg-item" data-conf="t1/mapa_classes"><span class="m-leg-cor ${cor}"></span>${esc(rot)}</span>`;
+    const it = (cor, rot) => `<span class="m-leg-item" data-conf="t1/mapa_classes">${amostra(`m-leg-cor ${cor}`)}${esc(rot)}</span>`;
     return `<span class="m-leg-tit">Taxa padronizada por 10 mil</span>` + mc.rotulos.map((r, i) => it(`c${i + 1}`, r)).join("") +
-      it("d8", mc.rotulo_d8) + `<span class="m-leg-item" data-conf="t1/mapa_classes"><span class="m-leg-ponto"></span>${esc(mc.rotulo_instavel)}</span>`;
+      it("d8", mc.rotulo_d8) + `<span class="m-leg-item" data-conf="t1/mapa_classes">${amostra("m-leg-ponto", "ponto", 11)}${esc(mc.rotulo_instavel)}</span>`;
   };
 
   const caixaFig = $("fig-mapa");

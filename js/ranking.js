@@ -1,5 +1,5 @@
 import { esc, fn, fp } from "./formato.js";
-import { escala, marcas, el, medeTexto, ligaDica } from "./graficos.js";
+import { escala, marcas, el, medeTexto, ligaDica, amostra } from "./graficos.js";
 
 const CELULAR = "(max-width: 767px)";
 const ALTURA = 280;
@@ -99,7 +99,8 @@ export function criaRanking(fig, portes, E) {
     const mudouMun = v?.sel.mun !== vista.sel.mun;
     v = { porPorte, ymax, uf: vista.uf, sel: vista.sel, titulo: vista.titulo, portePorMun: pm };
     for (const d of paineis) d.querySelector(".r-porte-n").textContent = `(${porPorte.get(Number(d.dataset.porte)).length})`;
-    fig.querySelector(".r-legenda").innerHTML = vista.legenda.map(([cl, t, conf]) => `<div class="r-leg-item"><span class="r-leg-sim ${cl}"></span><span${conf ? ` data-conf="${conf}"` : ""}>${esc(t).replace(/\n/g, "<br>")}</span></div>`).join("");
+    const forma = (cl) => (cl === "r-sim-instavel" ? "ponto" : cl === "r-sim-quebra" ? "triangulo" : "quadrado");
+    fig.querySelector(".r-legenda").innerHTML = vista.legenda.map(([cl, t, conf]) => `<div class="r-leg-item">${amostra(`r-leg-sim ${cl}`, forma(cl), 12)}<span${conf ? ` data-conf="${conf}"` : ""}>${esc(t).replace(/\n/g, "<br>")}</span></div>`).join("");
     abre(mudouMun);
     desenhaTodos();
     if (rola && celular.matches && pm != null) fig.querySelector(`details.r-porte[data-porte="${pm}"]`).scrollIntoView({ behavior: "smooth", block: "start" });

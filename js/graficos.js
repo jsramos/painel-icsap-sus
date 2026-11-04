@@ -60,6 +60,11 @@ const fundo = (vb) => {
 export const el = (nome, at = {}, filhos = "") =>
   `<${nome}${Object.entries(at).filter(([, v]) => v != null && v !== false).map(([k, v]) => ` ${k}="${escAttr(v)}"`).join("")}>${nome === "svg" && at.viewBox ? fundo(at.viewBox) : ""}${filhos}</${nome}>`;
 
+export const amostra = (classe, forma = "quadrado", tam = 14) => el("svg", { class: classe, viewBox: `0 0 ${tam} ${tam}`, width: tam, height: tam,
+  "aria-hidden": "true", focusable: "false" }, forma === "ponto" ? el("circle", { class: "a-forma", cx: tam / 2, cy: tam / 2, r: tam / 2 - 1.5 })
+  : forma === "triangulo" ? el("path", { class: "a-forma", d: `M0 ${tam * 0.1}L${tam} ${tam * 0.1}L${tam / 2} ${tam * 0.95}Z` })
+  : el("rect", { class: "a-forma", width: tam, height: tam }));
+
 export function ligaValores(fig) {
   const dica = document.createElement("div");
   dica.className = "dica-ponto";
