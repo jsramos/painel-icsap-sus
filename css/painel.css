@@ -34,6 +34,10 @@ nav.abas a:focus-visible, .filtros :focus-visible { outline: 2px solid var(--azu
 
 .aviso { background: #F3F6F7; border-left: 4px solid var(--laranja); padding: 8px 12px; font-size: 13px; margin: 0 0 14px; }
 .aviso[hidden] { display: none; }
+.aviso-escuro { display: flex; align-items: flex-start; gap: 12px; }
+.aviso-escuro p { margin: 0; flex: 1; }
+.aviso-fechar { flex: none; min-height: 32px; padding: 0 12px; border: 1px solid #C9D3D8; border-radius: 6px; background: #fff;
+  font: inherit; color: var(--texto); cursor: pointer; }
 
 .cartoes { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin-bottom: 24px; }
 .cartao { border: 1px solid var(--grade); border-top: 4px solid var(--teal); border-radius: 8px; padding: 12px 14px; }
@@ -251,6 +255,7 @@ code { font-family: Consolas, "Courier New", monospace; font-size: .92em; backgr
   .busca li { padding: 12px 10px; }
   #f-regiao { max-width: none; }
   .aviso { margin-top: 12px; }
+  .aviso-fechar { min-height: 44px; }
   .cartoes { grid-template-columns: 1fr 1fr; gap: 10px; }
   .cartoes .cartao:last-child:nth-child(odd) { grid-column: 1 / -1; }
   .graf { padding: 14px 12px; }

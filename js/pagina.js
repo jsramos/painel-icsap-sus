@@ -5,6 +5,21 @@ import { defineBase } from "./dados.js";
 export const P = JSON.parse(document.getElementById("dados-pagina").textContent);
 defineBase(P.base_dados);
 
+function avisoEscuro() {
+  const av = document.getElementById("aviso-escuro");
+  if (!av) return;
+  const chave = av.dataset.chave;
+  const lido = () => { try { return localStorage.getItem(chave); } catch (e) { return null; } };
+  const escuro = typeof matchMedia === "function" && matchMedia("(prefers-color-scheme: dark)").matches;
+  if (!navigator.userAgent.includes(av.dataset.navegador) || !escuro || lido() === "fechado") return;
+  av.hidden = false;
+  av.querySelector(".aviso-fechar").addEventListener("click", () => {
+    av.hidden = true;
+    try { localStorage.setItem(chave, "fechado"); } catch (e) {  }
+  });
+}
+avisoEscuro();
+
 export function iniciaPagina(desenha) {
   const E = criaEstado(P);
   const avisoEl = document.getElementById("aviso");
