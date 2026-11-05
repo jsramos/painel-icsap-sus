@@ -10,8 +10,7 @@ function avisoEscuro() {
   if (!av) return;
   const chave = av.dataset.chave;
   const lido = () => { try { return localStorage.getItem(chave); } catch (e) { return null; } };
-  const escuro = typeof matchMedia === "function" && matchMedia("(prefers-color-scheme: dark)").matches;
-  if (!navigator.userAgent.includes(av.dataset.navegador) || !escuro || lido() === "fechado") return;
+  if (!navigator.userAgent.includes(av.dataset.navegador) || lido() === "fechado") return;
   av.hidden = false;
   av.querySelector(".aviso-fechar").addEventListener("click", () => {
     av.hidden = true;
